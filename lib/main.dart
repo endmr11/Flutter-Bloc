@@ -102,11 +102,9 @@ class RightWidgetA extends StatelessWidget {
 
 class RightWidgetB extends StatelessWidget {
   const RightWidgetB({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
       color: Colors.purple,
       child: Column(
         children: const [
@@ -126,15 +124,14 @@ class RightWidgetC extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FormDataChanged? c = context.select((FormDataBloc bloc) => (bloc.state is FormDataChanged) ? bloc.state as FormDataChanged : null);
     return Container(
-      width: 150,
-      height: 160,
       color: Colors.white,
       child: Column(
         children: [
-          const Text(
-            "Right Widget C",
-            style: TextStyle(fontSize: 20),
+          Text(
+            "Right Widget C $c ${c?.data}",
+            style: const TextStyle(fontSize: 20),
           ),
           BlocBuilder<FormDataBloc, FormDataState>(
             builder: (context, state) {
